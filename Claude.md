@@ -13,23 +13,29 @@
 ## Console Logging Convention
 
 ```javascript
-console.log('🚀 ~ file: filename:linenumber → functionName → variableName:', variable);
+console.log(
+  "🚀 ~ file: filename:linenumber → functionName → variableName:",
+  variable
+);
 ```
 
 ## Tech Stack
 
 ### Frontend
+
 - **State**: XState (complex flows), React Query (server state)
 - **UI**: @shadcn/ui, lucide-react icons, next-themes
 - **Forms**: react-hook-form + Zod validation
 - **Styling**: Tailwind CSS, cn() utility, cva for variants
 
 ### Backend
+
 - **API**: tRPC with type-safe procedures
 - **Database**: PostgreSQL + Drizzle ORM
 - **Auth**: Better-auth with session management
 
 ### Testing & Quality
+
 - **Unit/Integration**: Vitest
 - **E2E**: Playwright
 - **Mocking**: MSW
@@ -46,10 +52,10 @@ pnpm check        # Format & lint
 
 ## Project URLs
 
-- Frontend: http://localhost:3001
-- Backend API: http://localhost:3000
-- Drizzle Studio: https://local.drizzle.studio
-- GitHub: https://github.com/jeffscottward/t-stack-base
+- Frontend: <http://localhost:3001>
+- Backend API: <http://localhost:3000>
+- Drizzle Studio: <https://local.drizzle.studio>
+- GitHub: <https://github.com/jeffscottward/t-stack-base>
 
 ## Documentation
 
@@ -62,6 +68,7 @@ pnpm check        # Format & lint
 ## Key Patterns (see @docs/ai-patterns.md for full list)
 
 When building features, automatically:
+
 - Use `protectedProcedure` for auth endpoints
 - Add loading skeletons and error boundaries
 - Write comprehensive tests with edge cases
