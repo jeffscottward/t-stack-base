@@ -87,6 +87,23 @@ pnpm dev
 Open [http://localhost:3001](http://localhost:3001) in your browser to see the web application.
 The API is running at [http://localhost:3000](http://localhost:3000).
 
+### 🔍 Browser Development Tools (Optional)
+
+For enhanced debugging with Claude Code AI assistant, you can run the browser tools server:
+
+```bash
+# In a separate terminal
+pnpm browser-tools
+```
+
+This enables Claude Code to:
+- View console logs and errors
+- Inspect network requests
+- Take screenshots of your application
+- Run automated audits (accessibility, performance, SEO)
+
+Make sure you have the [Claude Code Chrome Extension](https://chrome.google.com/webstore/detail/claude-code) installed for this feature to work.
+
 
 
 ## Project Structure
@@ -108,6 +125,13 @@ t-stack-base/
 - `pnpm db:push`: Push schema changes to database
 - `pnpm db:studio`: Open database studio UI
 - `pnpm check`: Run Biome formatting and linting
+- `pnpm browser-tools`: Start browser tools server for Claude Code integration
+
+## 🔗 Helpful Resources
+
+### Building Data-Driven Features
+When building features that require real-world data for testing or demonstration:
+- **[Public APIs](https://github.com/public-apis/public-apis)** - A collective list of free APIs for use in software and web development. Great for prototyping features with real data including weather, news, sports, finance, and more.
 
 ## Instructions after bootstrapping T-Stack
 

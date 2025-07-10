@@ -23,16 +23,18 @@ console.log(
 
 ### Frontend
 
-- **State**: XState (complex flows), React Query (server state)
+- **State**: XState (local state), React Query (server state) - NEVER use useState or useEffect hooks
 - **UI**: @shadcn/ui, lucide-react icons, next-themes
 - **Forms**: react-hook-form + Zod validation
 - **Styling**: Tailwind CSS, cn() utility, cva for variants
+- **Networking**: Axios for HTTP requests
 
 ### Backend
 
 - **API**: tRPC with type-safe procedures
 - **Database**: PostgreSQL + Drizzle ORM
 - **Auth**: Better-auth with session management
+- **Networking**: Axios for external API calls
 
 ### Testing & Quality
 
@@ -41,6 +43,14 @@ console.log(
 - **Mocking**: MSW
 - **Formatting**: Biome (tabs, double quotes)
 
+### Development Tools
+
+- **Browser Tools**: MCP browser-tools-server for Claude Code integration
+  - Console logs and error monitoring
+  - Network request inspection
+  - Screenshot capabilities
+  - Automated audits (accessibility, performance, SEO)
+
 ## Quick Commands
 
 ```bash
@@ -48,6 +58,7 @@ pnpm dev          # Start all apps
 pnpm test         # Run tests
 pnpm db:studio    # Open database UI
 pnpm check        # Format & lint
+pnpm browser-tools # Start browser tools server (run alongside dev)
 ```
 
 ## Project URLs
