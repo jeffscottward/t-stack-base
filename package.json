@@ -24,7 +24,10 @@
 		"test:ui": "turbo test:ui",
 		"test:e2e": "playwright test",
 		"test:e2e:ui": "playwright test --ui",
-		"test:all": "turbo test:run && playwright test"
+		"test:all": "turbo test:run && playwright test",
+		"test:states": "turbo -F web test:states",
+		"test:states:watch": "turbo -F web test:states:watch",
+		"test:states:all": "turbo -F web test:states:all"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "^2.0.0",

@@ -144,9 +144,6 @@ importers:
       tw-animate-css:
         specifier: ^1.3.4
         version: 1.3.5
-      xstate:
-        specifier: ^5.20.1
-        version: 5.20.1
       zod:
         specifier: ^4.0.2
         version: 4.0.3
@@ -178,6 +175,12 @@ importers:
       '@vitejs/plugin-react':
         specifier: ^4.6.0
         version: 4.6.0(vite@7.0.4(@types/node@20.19.7)(jiti@2.4.2)(lightningcss@1.30.1)(yaml@2.8.0))
+      '@xstate/react':
+        specifier: ^6.0.0
+        version: 6.0.0(@types/react@19.1.8)(react@19.1.0)(xstate@5.20.1)
+      '@xstate/test':
+        specifier: 1.0.0-beta.5
+        version: 1.0.0-beta.5(xstate@5.20.1)
       jsdom:
         specifier: ^26.1.0
         version: 26.1.0
@@ -187,6 +190,9 @@ importers:
       typescript:
         specifier: ^5
         version: 5.8.3
+      xstate:
+        specifier: ^5.20.1
+        version: 5.20.1
 
 packages:
 
@@ -2137,6 +2143,26 @@ packages:
   '@vitest/utils@3.2.4':
     resolution: {integrity: sha512-fB2V0JFrQSMsCo9HiSq3Ezpdv4iYaXRG1Sx8edX3MwxfyNn83mKiGzOcH+Fkxt4MHxr3y42fQi1oeAInqgX2QA==}
 
+  '@xstate/graph@2.0.0-beta.6':
+    resolution: {integrity: sha512-nqwn1U92rj8e68ZuvV9cig78QUqzxvld55Xf4ca9v1cYcaJufot6WbcsNjVtE+y7C2rZ2zyMN8myU5iVKgvFHA==}
+    peerDependencies:
+      xstate: ^5.5.1
+
+  '@xstate/react@6.0.0':
+    resolution: {integrity: sha512-xXlLpFJxqLhhmecAXclBECgk+B4zYSrDTl8hTfPZBogkn82OHKbm9zJxox3Z/YXoOhAQhKFTRLMYGdlbhc6T9A==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+      xstate: ^5.20.0
+    peerDependenciesMeta:
+      xstate:
+        optional: true
+
+  '@xstate/test@1.0.0-beta.5':
+    resolution: {integrity: sha512-eveHd4YsJqumgUHCsZhhx0Gv8ve8aF2UUyoo4v3JlO2gJQedsyfe4YwODNL7Xkw/igGExgr3zFjjRG3XcjtKhw==}
+    deprecated: Please use @xstate/graph instead.
+    peerDependencies:
+      xstate: ^5.5.1
+
   agent-base@7.1.4:
     resolution: {integrity: sha512-MnA+YT8fwfJPgBx3m60MNqakm30XOkyIoH1y6huTQvC0PwZG7ki8NacLBcrPbNoo8vEZy7Jpuk7+jMO+CUovTQ==}
     engines: {node: '>= 14'}
@@ -3726,6 +3752,15 @@ packages:
     peerDependencies:
       '@types/react': '*'
       react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0 || ^19.0.0-rc
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+
+  use-isomorphic-layout-effect@1.2.1:
+    resolution: {integrity: sha512-tpZZ+EX0gaghDAiFR37hj5MgY6ZN55kLiPkJsKxBMZ6GZdOSPJXiOzPM984oPYZ5AnehYx5WQp1+ME8I/P/pRA==}
+    peerDependencies:
+      '@types/react': '*'
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
     peerDependenciesMeta:
       '@types/react':
         optional: true
@@ -5777,6 +5812,25 @@ snapshots:
       loupe: 3.1.4
       tinyrainbow: 2.0.0
 
+  '@xstate/graph@2.0.0-beta.6(xstate@5.20.1)':
+    dependencies:
+      xstate: 5.20.1
+
+  '@xstate/react@6.0.0(@types/react@19.1.8)(react@19.1.0)(xstate@5.20.1)':
+    dependencies:
+      react: 19.1.0
+      use-isomorphic-layout-effect: 1.2.1(@types/react@19.1.8)(react@19.1.0)
+      use-sync-external-store: 1.5.0(react@19.1.0)
+    optionalDependencies:
+      xstate: 5.20.1
+    transitivePeerDependencies:
+      - '@types/react'
+
+  '@xstate/test@1.0.0-beta.5(xstate@5.20.1)':
+    dependencies:
+      '@xstate/graph': 2.0.0-beta.6(xstate@5.20.1)
+      xstate: 5.20.1
+
   agent-base@7.1.4: {}
 
   ansi-escapes@4.3.2:
@@ -7293,6 +7347,12 @@ snapshots:
     dependencies:
       react: 19.1.0
       tslib: 2.8.1
+    optionalDependencies:
+      '@types/react': 19.1.8
+
+  use-isomorphic-layout-effect@1.2.1(@types/react@19.1.8)(react@19.1.0):
+    dependencies:
+      react: 19.1.0
     optionalDependencies:
       '@types/react': 19.1.8
 

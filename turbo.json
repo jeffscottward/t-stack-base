@@ -51,6 +51,18 @@
 		"test:ui": {
 			"cache": false,
 			"persistent": true
+		},
+		"test:states": {
+			"dependsOn": ["^build"],
+			"outputs": ["coverage/**"]
+		},
+		"test:states:watch": {
+			"cache": false,
+			"persistent": true
+		},
+		"test:states:all": {
+			"dependsOn": ["^build"],
+			"outputs": ["coverage/**"]
 		}
 	}
 }
