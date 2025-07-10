@@ -109,6 +109,12 @@ t-stack-base/
 - `pnpm db:studio`: Open database studio UI
 - `pnpm check`: Run Biome formatting and linting
 
+## 🔗 Helpful Resources
+
+### Building Data-Driven Features
+When building features that require real-world data for testing or demonstration:
+- **[Public APIs](https://github.com/public-apis/public-apis)** - A collective list of free APIs for use in software and web development. Great for prototyping features with real data including weather, news, sports, finance, and more.
+
 ## Instructions after bootstrapping T-Stack
 
 ```
