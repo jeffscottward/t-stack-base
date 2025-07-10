@@ -23,16 +23,18 @@ console.log(
 
 ### Frontend
 
-- **State**: XState (complex flows), React Query (server state)
+- **State**: XState (local state), React Query (server state) - NEVER use useState or useEffect hooks
 - **UI**: @shadcn/ui, lucide-react icons, next-themes
 - **Forms**: react-hook-form + Zod validation
 - **Styling**: Tailwind CSS, cn() utility, cva for variants
+- **Networking**: Axios for HTTP requests
 
 ### Backend
 
 - **API**: tRPC with type-safe procedures
 - **Database**: PostgreSQL + Drizzle ORM
 - **Auth**: Better-auth with session management
+- **Networking**: Axios for external API calls
 
 ### Testing & Quality
 

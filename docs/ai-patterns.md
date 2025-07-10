@@ -6,7 +6,7 @@ This document contains detailed patterns that should be applied automatically wh
 
 - Use `protectedProcedure` for any authenticated endpoints
 - Check `session.isPending` before rendering auth-dependent UI  
-- Handle auth redirects properly with useEffect dependencies
+- Handle auth redirects properly with XState guards and transitions
 - Track session metadata (IP, user agent) for security
 - Enforce password policies (min 8 chars) at all layers
 - Store sensitive data in environment variables only
@@ -34,6 +34,8 @@ This document contains detailed patterns that should be applied automatically wh
 
 ## Data Fetching & State Management
 
+- **State Management Rules**: NEVER use useState - Use XState for local/UI state, React Query for server state
+- **Side Effects Rule**: NEVER use useEffect - Use XState for side effects and lifecycle
 - Configure global error handling with retry actions in toasts
 - Implement optimistic updates for all mutations
 - Use consistent query key patterns for caching
@@ -41,9 +43,12 @@ This document contains detailed patterns that should be applied automatically wh
 - Separate server state (React Query) from client state (XState)
 - Invalidate queries after mutations
 - Handle stale-while-revalidate patterns
+- Use Axios for all HTTP requests (frontend and backend)
 
 ## Component & UX Patterns
 
+- **NEVER use React useState hook** - Use XState for local state, React Query for server state
+- **NEVER use React useEffect hook** - Use XState for side effects and lifecycle management
 - Always include error boundaries with fallback UI
 - Add proper loading states (isPending checks)
 - Implement keyboard navigation and ARIA labels
