@@ -1,4 +1,4 @@
-import { afterEach, beforeEach } from "vitest";
+import { afterEach, beforeEach, vi } from "vitest";
 
 // Reset modules before each test
 beforeEach(() => {

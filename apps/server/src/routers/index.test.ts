@@ -1,5 +1,6 @@
 import type { inferProcedureInput } from "@trpc/server";
-import { beforeEach, describe, expect, it } from "vitest";
+import { NextRequest } from "next/server";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import { createContext } from "../lib/context";
 import { appRouter } from "./index";
 
@@ -7,7 +8,13 @@ describe("tRPC Router", () => {
 	let caller: ReturnType<typeof appRouter.createCaller>;
 
 	beforeEach(async () => {
-		const ctx = await createContext();
+		// Create a mock NextRequest
+		const mockRequest = new NextRequest("http://localhost:3000", {
+			headers: new Headers({
+				"content-type": "application/json",
+			}),
+		});
+		const ctx = await createContext(mockRequest);
 		caller = appRouter.createCaller(ctx);
 	});
 
