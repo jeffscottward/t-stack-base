@@ -1,4 +1,4 @@
-import { assign, createMachine } from "xstate";
+import { assign, setup } from "xstate";
 
 export interface DashboardContext {
 	isAuthenticated: boolean;
@@ -15,68 +15,71 @@ export type DashboardEvent =
 	| { type: "DATA_ERROR"; error: string }
 	| { type: "SIGN_OUT" };
 
-export const dashboardMachine = createMachine<DashboardContext, DashboardEvent>(
-	{
-		id: "dashboard",
-		initial: "checkingAuth",
-		context: {
-			isAuthenticated: false,
-			userData: null,
-			error: null,
+export const dashboardMachine = setup({
+	types: {
+		context: {} as DashboardContext,
+		events: {} as DashboardEvent,
+	},
+}).createMachine({
+	id: "dashboard",
+	initial: "checkingAuth",
+	context: {
+		isAuthenticated: false,
+		userData: null,
+		error: null,
+	},
+	states: {
+		checkingAuth: {
+			on: {
+				AUTH_SUCCESS: {
+					target: "authenticated",
+					actions: assign({
+						isAuthenticated: () => true,
+						userData: ({ event }) => event.userData,
+					}),
+				},
+				AUTH_FAILURE: "unauthenticated",
+			},
 		},
-		states: {
-			checkingAuth: {
-				on: {
-					AUTH_SUCCESS: {
-						target: "authenticated",
-						actions: assign({
-							isAuthenticated: true,
-							userData: (_, event) => event.userData,
-						}),
+		authenticated: {
+			initial: "idle",
+			states: {
+				idle: {
+					on: {
+						FETCH_DATA: "fetchingData",
 					},
-					AUTH_FAILURE: "unauthenticated",
 				},
-			},
-			authenticated: {
-				initial: "idle",
-				states: {
-					idle: {
-						on: {
-							FETCH_DATA: "fetchingData",
+				fetchingData: {
+					on: {
+						DATA_SUCCESS: {
+							target: "idle",
+							actions: assign({
+								userData: ({ context, event }) => ({
+									...context.userData,
+									...event.data,
+								}),
+							}),
 						},
-					},
-					fetchingData: {
-						on: {
-							DATA_SUCCESS: {
-								target: "idle",
-								actions: assign({
-									userData: (context, event) => ({
-										...context.userData,
-										...event.data,
-									}),
-								}),
-							},
-							DATA_ERROR: {
-								target: "idle",
-								actions: assign({
-									error: (_, event) => event.error,
-								}),
-							},
+						DATA_ERROR: {
+							target: "idle",
+							actions: assign({
+								error: ({ event }) => event.error,
+							}),
 						},
 					},
 				},
-				on: {
-					SIGN_OUT: "signingOut",
-				},
 			},
-			unauthenticated: {
-				type: "final",
+			on: {
+				SIGN_OUT: "signingOut",
 			},
-			signingOut: {
-				on: {
-					AUTH_FAILURE: "unauthenticated",
-				},
+		},
+		unauthenticated: {
+			type: "final",
+		},
+		signingOut: {
+			on: {
+				AUTH_FAILURE: "unauthenticated",
 			},
 		},
 	},
-);
+});
