@@ -1,98 +1,94 @@
-# Console Logging Convention
+# T-Stack Base Development Guidelines
 
-When adding console.log statements, use the following format:
+## Core Principles
+
+- Use TypeScript for all code
+- Prefer modern, well-maintained libraries
+- Follow existing patterns in the codebase
+- Never commit directly - use proper git flow
+- Always run tests before committing
+
+## Console Logging Convention
 
 ```javascript
-console.log('🚀 ~ file: filename:linenumber → functionName → variableName:', variable);
+console.log(
+  "🚀 ~ file: filename:linenumber → functionName → variableName:",
+  variable
+);
 ```
 
-Example:
+## Frontend Stack
 
-```javascript
-console.log('🚀 ~ file: auth.ts:42 → handleLogin → userData:', userData);
+- **State Management**: XState for complex state machines
+- **Data Fetching**: @tanstack/react-query for server state
+- **UI Components**: @shadcn/ui components
+- **Forms**: react-hook-form with Zod validation
+- **Charts**: @shadcn/ui charts (recharts under the hood)
+
+## Component Development
+
+Reference: https://github.com/Kiranism/next-shadcn-dashboard-starter
+
+- Use for dashboard layouts, data tables, forms, auth flows
+- Follow shadcn/ui patterns and conventions
+
+## Testing Requirements
+
+- Write tests for all new features
+- Tests run automatically on pre-commit
+- Use Vitest for unit tests, Playwright for E2E
+- See @docs/testing.md for detailed guidelines
+
+## Database & Backend
+
+- PostgreSQL via Supabase (local: port 54322)
+- Drizzle ORM for type-safe queries
+- tRPC for type-safe API endpoints
+- Better-auth for authentication
+
+## Quick Commands
+
+```bash
+pnpm dev          # Start all apps
+pnpm test         # Run tests
+pnpm db:studio    # Open database UI
+pnpm check        # Format & lint
 ```
 
-# Frontend Development Guidelines
+## Project Structure
 
-Always defer to our state-of-the-art Node modules for frontend code:
-- **State Management**: Use XState for complex state machines and state management
-- **Data Fetching**: Use @tanstack/react-query for server state management and caching
-- **UI Components**: Use @shadcn/ui components
-- **Forms**: Use react-hook-form with Zod for validation
-- **Charts/Visualization**: Use @shadcn/ui charts (which uses recharts under the hood)
-
-If a specific tool or library isn't already available in the project, suggest modern, well-maintained alternatives based on the task requirements.
-
-## Component Development Reference
-
-When building dashboard components, layouts, or UI patterns, use web search to explore this repository for ideas and best practices:
-https://github.com/Kiranism/next-shadcn-dashboard-starter
-
-This repository provides excellent examples and patterns for:
-- Dashboard layouts and navigation
-- Data tables and lists
-- Forms and input components
-- Authentication flows
-- Responsive design patterns
-- shadcn/ui component usage examples
-
-# Testing Guidelines
-
-## Testing Stack
-- **Unit & Integration Testing**: Vitest
-- **Component Testing**: React Testing Library + Testing Library User Event
-- **E2E Testing**: Playwright (includes visual regression capabilities)
-- **API Mocking**: MSW (Mock Service Worker)
-- **Coverage**: Vitest with v8 coverage provider
-
-## Running Tests
-
-### From Root Directory
-- `pnpm test` - Run all unit tests once
-- `pnpm test:watch` - Run tests in watch mode
-- `pnpm test:coverage` - Run tests with coverage report
-- `pnpm test:ui` - Open Vitest UI
-- `pnpm test:e2e` - Run Playwright E2E tests
-- `pnpm test:e2e:ui` - Open Playwright UI
-- `pnpm test:all` - Run all unit tests and E2E tests
-
-### From Individual Apps
-- `cd apps/web && pnpm test` - Run web app tests
-- `cd apps/server && pnpm test` - Run server tests
-
-## Pre-commit Hooks
-Tests are automatically run on changed files during pre-commit via Husky and lint-staged. This ensures:
-- No broken tests are committed
-- Code quality is maintained
-- Fast feedback loop for developers
-
-## Writing Tests
-
-### Frontend Component Tests
-Place test files next to the components they test with `.test.tsx` extension:
 ```
-src/components/button.tsx
-src/components/button.test.tsx
+apps/
+  web/          # Frontend (Next.js, port 3001)
+  server/       # Backend (Next.js + tRPC, port 3000)
+packages/       # Shared packages
+docs/           # Extended documentation
+e2e/            # E2E tests
 ```
 
-### Backend Tests
-Place test files next to the code they test with `.test.ts` extension:
-```
-src/routers/index.ts
-src/routers/index.test.ts
-```
+## Important URLs
 
-### E2E Tests
-Place E2E tests in the `/e2e` directory at the root:
-```
-e2e/auth.spec.ts
-e2e/homepage.spec.ts
-```
+- Frontend: http://localhost:3001
+- Backend API: http://localhost:3000
+- Drizzle Studio: https://local.drizzle.studio
+- Supabase Studio: http://localhost:54323
+- GitHub: https://github.com/jeffscottward/t-stack-base
 
-## Test Best Practices
-1. Write tests that focus on user behavior, not implementation details
-2. Use data-testid sparingly; prefer semantic queries (role, label, text)
-3. Mock external dependencies (APIs, databases) in unit tests
-4. Use MSW for API mocking to test closer to production behavior
-5. Keep tests isolated and independent
-6. Aim for meaningful coverage, not 100% coverage
+## Extended Documentation
+
+- @docs/git-workflow.md - Git flow and commit conventions
+- @docs/testing.md - Comprehensive testing guidelines
+- @docs/commands.md - All available pnpm commands
+
+## Common Issues
+
+1. **Port conflicts**: Kill process with `lsof -ti:PORT | xargs kill -9`
+2. **TypeScript errors**: Remove unnecessary project references
+3. **Test failures**: Check imports and mocks are properly configured
+
+## Pre-commit Checklist
+
+- [ ] Tests pass (`pnpm test`)
+- [ ] Linting passes (`pnpm check`)
+- [ ] Types check (`pnpm check-types`)
+- [ ] Commit message follows convention (emoji + type + scope)
