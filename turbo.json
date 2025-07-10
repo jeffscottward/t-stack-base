@@ -32,7 +32,25 @@
 		"db:generate": {
 			"cache": false,
 			"persistent": true
+		},
+		"test": {
+			"cache": false
+		},
+		"test:run": {
+			"dependsOn": ["^build"],
+			"outputs": ["coverage/**"]
+		},
+		"test:watch": {
+			"cache": false,
+			"persistent": true
+		},
+		"test:coverage": {
+			"dependsOn": ["^build"],
+			"outputs": ["coverage/**"]
+		},
+		"test:ui": {
+			"cache": false,
+			"persistent": true
 		}
-		
-			}
+	}
 }

@@ -68,3 +68,32 @@ t-stack-base/
 - `pnpm db:push`: Push schema changes to database
 - `pnpm db:studio`: Open database studio UI
 - `pnpm check`: Run Biome formatting and linting
+
+## Instructions after bootstrapping T-Stack
+
+```
+────────────────────────────────────────────────────────────────────╮
+ │                                                                    │
+ │  Next steps                                                        │
+ │  1. cd t-stack-base                                                │
+ │  2. pnpm dev                                                       │
+ │                                                                    │
+ │  Your project will be available at:                                │
+ │  • Frontend: http://localhost:3001                                 │
+ │  • Backend API: http://localhost:3000                              │
+ │                                                                    │
+ │  Database commands:                                                │
+ │  • Apply schema: pnpm db:push                                      │
+ │  • Database UI: pnpm db:studio                                     │
+ │                                                                    │
+ │  Linting and formatting:                                           │
+ │  • Format and lint fix: pnpm check                                 │
+ │                                                                    │
+ │  Update all dependencies:                                          │
+ │  pnpm dlx taze -r                                                  │
+ │                                                                    │
+ │  Like Better-T Stack? Please consider giving us a star on GitHub:  │
+ │  https://github.com/AmanVarshney01/create-better-t-stack           │
+ │                                                                    │
+ ╰────────────────────────────────────────────────────────────────────╯
+```
