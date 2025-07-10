@@ -27,7 +27,8 @@
 		"test:all": "turbo test:run && playwright test",
 		"test:states": "turbo -F web test:states",
 		"test:states:watch": "turbo -F web test:states:watch",
-		"test:states:all": "turbo -F web test:states:all"
+		"test:states:all": "turbo -F web test:states:all",
+		"browser-tools": "npx @agentdeskai/browser-tools-server@1.2.1"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "^2.0.0",

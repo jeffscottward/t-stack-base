@@ -24,7 +24,8 @@
 		"dotenv": "^16.5.0",
 		"drizzle-orm": "^0.44.2",
 		"next": "15.3.0",
-		"pg": "^8.14.1"
+		"pg": "^8.14.1",
+		"zod": "^4.0.3"
 	},
 	"trustedDependencies": [
 		"supabase"

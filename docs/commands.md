@@ -10,6 +10,9 @@ pnpm dev
 pnpm dev:web       # Frontend only (http://localhost:3001)
 pnpm dev:server    # Backend only (http://localhost:3000)
 pnpm dev:native    # Native app (if applicable)
+
+# Browser tools for Claude Code integration
+pnpm browser-tools # Start browser tools server (run in separate terminal)
 ```
 
 ## Database Commands

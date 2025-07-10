@@ -43,6 +43,14 @@ console.log(
 - **Mocking**: MSW
 - **Formatting**: Biome (tabs, double quotes)
 
+### Development Tools
+
+- **Browser Tools**: MCP browser-tools-server for Claude Code integration
+  - Console logs and error monitoring
+  - Network request inspection
+  - Screenshot capabilities
+  - Automated audits (accessibility, performance, SEO)
+
 ## Quick Commands
 
 ```bash
@@ -50,6 +58,7 @@ pnpm dev          # Start all apps
 pnpm test         # Run tests
 pnpm db:studio    # Open database UI
 pnpm check        # Format & lint
+pnpm browser-tools # Start browser tools server (run alongside dev)
 ```
 
 ## Project URLs

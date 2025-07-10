@@ -65,6 +65,9 @@ importers:
       pg:
         specifier: ^8.14.1
         version: 8.16.3
+      zod:
+        specifier: ^4.0.3
+        version: 4.0.3
     devDependencies:
       '@types/node':
         specifier: ^20
@@ -84,6 +87,12 @@ importers:
 
   apps/web:
     dependencies:
+      '@radix-ui/react-progress':
+        specifier: ^1.1.7
+        version: 1.1.7(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@radix-ui/react-tabs':
+        specifier: ^1.1.12
+        version: 1.1.12(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@shadcn/ui':
         specifier: ^0.0.4
         version: 0.0.4
