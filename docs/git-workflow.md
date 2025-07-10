@@ -166,3 +166,27 @@ git merge develop
 # 5. When ready, finish the feature
 git flow feature finish my-awesome-feature
 ```
+
+### Git Up - Smart Branch Switching
+
+When switching branches, use this alias to ensure you're always up-to-date:
+
+```bash
+# Add this to your ~/.gitconfig or ~/.zshrc
+alias git-up='git checkout main && git pull origin main && git checkout develop && git pull origin develop && git checkout -'
+
+# Or as a git alias
+git config --global alias.up '!git checkout main && git pull origin main && git checkout develop && git pull origin develop && git checkout -'
+```
+
+Usage:
+```bash
+# Before switching to a feature branch
+git-up  # Updates main and develop, returns to current branch
+git checkout feature/my-feature
+```
+
+This ensures:
+- Your main branch is current with production
+- Your develop branch has latest features
+- You can rebase/merge cleanly without conflicts

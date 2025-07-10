@@ -2,6 +2,46 @@
 
 This project was created with [Better-T-Stack](https://github.com/AmanVarshney01/create-better-t-stack), a modern TypeScript stack that combines Next.js, Next, TRPC, and more.
 
+## 🚀 Quick Start for Beginners
+
+If you're new to modern web development, don't worry! This project is set up to help you succeed.
+
+### Prerequisites
+- [Node.js](https://nodejs.org/) (v18 or higher)
+- [pnpm](https://pnpm.io/installation) (install with `npm install -g pnpm`)
+- [Git](https://git-scm.com/downloads)
+- A code editor like [VS Code](https://code.visualstudio.com/)
+
+### First Time Setup
+```bash
+# 1. Clone this repository
+git clone https://github.com/jeffscottward/t-stack-base.git
+cd t-stack-base
+
+# 2. Install dependencies
+pnpm install
+
+# 3. Start the development servers
+pnpm dev
+
+# 4. Open in your browser
+# Frontend: http://localhost:3001
+# Backend: http://localhost:3000
+```
+
+### 📚 New to This Stack?
+- **Never used TypeScript?** It's just JavaScript with types. The red squiggles help prevent bugs!
+- **What's a monorepo?** It's multiple related projects in one repository (see `apps/` folder)
+- **What's tRPC?** It lets your frontend and backend share types automatically
+- **Why all these tools?** They catch errors before users see them
+
+### 🎯 Your First Task
+1. Open `apps/web/src/app/page.tsx`
+2. Change the text "BETTER T STACK" to your project name
+3. Save the file and see it update instantly in your browser!
+4. Run `pnpm test` to make sure nothing broke
+5. Commit your change following the pattern in `docs/git-workflow.md`
+
 ## Features
 
 - **TypeScript** - For type safety and improved developer experience
