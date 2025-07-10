@@ -1,4 +1,4 @@
-import { assign, createMachine } from "xstate";
+import { assign, setup } from "xstate";
 
 export interface UserMenuContext {
 	isOpen: boolean;
@@ -16,7 +16,12 @@ export type UserMenuEvent =
 	| { type: "SIGN_OUT" }
 	| { type: "SIGN_OUT_SUCCESS" };
 
-export const userMenuMachine = createMachine<UserMenuContext, UserMenuEvent>({
+export const userMenuMachine = setup({
+	types: {
+		context: {} as UserMenuContext,
+		events: {} as UserMenuEvent,
+	},
+}).createMachine({
 	id: "userMenu",
 	initial: "loading",
 	context: {
@@ -30,14 +35,14 @@ export const userMenuMachine = createMachine<UserMenuContext, UserMenuEvent>({
 				USER_LOADED: {
 					target: "authenticated.closed",
 					actions: assign({
-						user: (_, event) => event.user,
-						isLoading: false,
+						user: ({ event }) => event.user,
+						isLoading: () => false,
 					}),
 				},
 				USER_NOT_FOUND: {
 					target: "unauthenticated",
 					actions: assign({
-						isLoading: false,
+						isLoading: () => false,
 					}),
 				},
 			},

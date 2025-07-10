@@ -115,7 +115,7 @@ describe("Model-Based Testing - Working Example", () => {
 				`    - Reachable States: ${Object.keys(shortestPaths).length}`,
 			);
 			console.log(
-				`    - Total Unique Paths: ${Object.keys(simplePaths).reduce((acc, state) => acc + simplePaths[state].length, 0)}`,
+				`    - Total Unique Paths: ${Object.keys(simplePaths).reduce((acc, state) => acc + (simplePaths as any)[state].length, 0)}`,
 			);
 			console.log(`    - States: ${Object.keys(machine.states).join(", ")}`);
 		});

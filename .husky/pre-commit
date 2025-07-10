@@ -1,1 +1,22 @@
 lint-staged
+
+# Auto-update main branch to stay in sync
+echo "🔄 Updating main branch..."
+current_branch=$(git branch --show-current)
+git fetch origin main:main --quiet
+if [ $? -eq 0 ]; then
+  echo "✅ Main branch updated successfully"
+else
+  echo "⚠️  Could not update main branch (this is okay if you're offline)"
+fi
+
+# Run TypeScript type checking
+echo "Running TypeScript type check..."
+pnpm check-types
+
+if [ $? -ne 0 ]; then
+  echo "❌ TypeScript errors found. Please fix them before committing."
+  exit 1
+fi
+
+echo "✅ TypeScript check passed!"

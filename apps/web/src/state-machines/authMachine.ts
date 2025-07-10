@@ -1,4 +1,4 @@
-import { assign, createMachine } from "xstate";
+import { assign, setup } from "xstate";
 
 export interface AuthContext {
 	mode: "signin" | "signup";
@@ -21,7 +21,25 @@ export type AuthEvent =
 	| { type: "SUBMIT_ERROR"; error: string }
 	| { type: "RESET" };
 
-export const authMachine = createMachine<AuthContext, AuthEvent>({
+export const authMachine = setup({
+	types: {
+		context: {} as AuthContext,
+		events: {} as AuthEvent,
+	},
+	guards: {
+		isFormValid: ({ context }) => {
+			const { email, password, name } = context.formData;
+			const { mode } = context;
+
+			if (!email || !password) return false;
+			if (mode === "signup" && !name) return false;
+			if (password.length < 8) return false;
+			if (!email.includes("@")) return false;
+
+			return true;
+		},
+	},
+}).createMachine({
 	id: "auth",
 	initial: "idle",
 	context: {
@@ -39,41 +57,41 @@ export const authMachine = createMachine<AuthContext, AuthEvent>({
 				TOGGLE_MODE: {
 					target: "idle",
 					actions: assign({
-						mode: (context) =>
+						mode: ({ context }) =>
 							context.mode === "signin" ? "signup" : "signin",
-						error: null,
-						formData: {
+						error: () => null,
+						formData: () => ({
 							email: "",
 							password: "",
 							name: "",
-						},
+						}),
 					}),
 				},
 				INPUT_EMAIL: {
 					actions: assign({
-						formData: (context, event) => ({
+						formData: ({ context, event }) => ({
 							...context.formData,
 							email: event.value,
 						}),
-						error: null,
+						error: () => null,
 					}),
 				},
 				INPUT_PASSWORD: {
 					actions: assign({
-						formData: (context, event) => ({
+						formData: ({ context, event }) => ({
 							...context.formData,
 							password: event.value,
 						}),
-						error: null,
+						error: () => null,
 					}),
 				},
 				INPUT_NAME: {
 					actions: assign({
-						formData: (context, event) => ({
+						formData: ({ context, event }) => ({
 							...context.formData,
 							name: event.value,
 						}),
-						error: null,
+						error: () => null,
 					}),
 				},
 				SUBMIT: "validating",
@@ -88,7 +106,7 @@ export const authMachine = createMachine<AuthContext, AuthEvent>({
 				{
 					target: "idle",
 					actions: assign({
-						error: (context) => {
+						error: ({ context }) => {
 							if (!context.formData.email) return "Email is required";
 							if (!context.formData.password) return "Password is required";
 							if (context.mode === "signup" && !context.formData.name)
@@ -109,7 +127,7 @@ export const authMachine = createMachine<AuthContext, AuthEvent>({
 				SUBMIT_ERROR: {
 					target: "idle",
 					actions: assign({
-						error: (_, event) => event.error,
+						error: ({ event }) => event.error,
 					}),
 				},
 			},
@@ -120,19 +138,4 @@ export const authMachine = createMachine<AuthContext, AuthEvent>({
 	},
 });
 
-export const authMachineWithServices = createMachine<AuthContext, AuthEvent>({
-	...authMachine.config,
-	guards: {
-		isFormValid: ({ context }) => {
-			const { email, password, name } = context.formData;
-			const { mode } = context;
-
-			if (!email || !password) return false;
-			if (mode === "signup" && !name) return false;
-			if (password.length < 8) return false;
-			if (!email.includes("@")) return false;
-
-			return true;
-		},
-	},
-});
+export const authMachineWithServices = authMachine;

@@ -2,7 +2,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { beforeEach, describe, expect, it, vi } from "vitest";
-import { SignInForm } from "./sign-in-form";
+import SignInForm from "./sign-in-form";
 
 // Mock next/navigation
 vi.mock("next/navigation", () => ({
@@ -39,7 +39,9 @@ describe("SignInForm", () => {
 	});
 
 	it("renders email and password fields", () => {
-		render(<SignInForm />, { wrapper: createWrapper() });
+		render(<SignInForm onSwitchToSignUp={() => {}} />, {
+			wrapper: createWrapper(),
+		});
 
 		expect(screen.getByLabelText(/email/i)).toBeInTheDocument();
 		expect(screen.getByLabelText(/password/i)).toBeInTheDocument();
@@ -50,7 +52,9 @@ describe("SignInForm", () => {
 
 	it("validates required fields", async () => {
 		const user = userEvent.setup();
-		render(<SignInForm />, { wrapper: createWrapper() });
+		render(<SignInForm onSwitchToSignUp={() => {}} />, {
+			wrapper: createWrapper(),
+		});
 
 		// Try to submit without filling fields
 		await user.click(screen.getByRole("button", { name: /sign in/i }));
@@ -62,7 +66,9 @@ describe("SignInForm", () => {
 
 	it("validates email format", async () => {
 		const user = userEvent.setup();
-		render(<SignInForm />, { wrapper: createWrapper() });
+		render(<SignInForm onSwitchToSignUp={() => {}} />, {
+			wrapper: createWrapper(),
+		});
 
 		await user.type(screen.getByLabelText(/email/i), "invalid-email");
 		await user.type(screen.getByLabelText(/password/i), "password123");
@@ -75,7 +81,9 @@ describe("SignInForm", () => {
 
 	it("submits form with valid data", async () => {
 		const user = userEvent.setup();
-		render(<SignInForm />, { wrapper: createWrapper() });
+		render(<SignInForm onSwitchToSignUp={() => {}} />, {
+			wrapper: createWrapper(),
+		});
 
 		await user.type(screen.getByLabelText(/email/i), "test@example.com");
 		await user.type(screen.getByLabelText(/password/i), "password123");

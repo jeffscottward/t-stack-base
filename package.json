@@ -28,7 +28,8 @@
 		"test:states": "turbo -F web test:states",
 		"test:states:watch": "turbo -F web test:states:watch",
 		"test:states:all": "turbo -F web test:states:all",
-		"browser-tools": "npx @agentdeskai/browser-tools-server@1.2.1"
+		"browser-tools": "npx @agentdeskai/browser-tools-server@1.2.1",
+		"check-types:strict": "turbo check-types"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "^2.0.0",

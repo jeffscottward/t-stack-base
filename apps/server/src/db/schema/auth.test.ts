@@ -1,55 +1,55 @@
 import { pgTable } from "drizzle-orm/pg-core";
 import { describe, expect, it } from "vitest";
-import { accounts, sessions, users, verifications } from "./auth";
+import { account, session, user, verification } from "./auth";
 
 describe("Auth Schema", () => {
 	it("should have users table defined", () => {
-		expect(users).toBeDefined();
-		expect(users.id).toBeDefined();
-		expect(users.email).toBeDefined();
-		expect(users.emailVerified).toBeDefined();
-		expect(users.name).toBeDefined();
-		expect(users.createdAt).toBeDefined();
-		expect(users.updatedAt).toBeDefined();
-		expect(users.image).toBeDefined();
+		expect(user).toBeDefined();
+		expect(user.id).toBeDefined();
+		expect(user.email).toBeDefined();
+		expect(user.emailVerified).toBeDefined();
+		expect(user.name).toBeDefined();
+		expect(user.createdAt).toBeDefined();
+		expect(user.updatedAt).toBeDefined();
+		expect(user.image).toBeDefined();
 	});
 
 	it("should have sessions table defined", () => {
-		expect(sessions).toBeDefined();
-		expect(sessions.id).toBeDefined();
-		expect(sessions.expiresAt).toBeDefined();
-		expect(sessions.token).toBeDefined();
-		expect(sessions.createdAt).toBeDefined();
-		expect(sessions.updatedAt).toBeDefined();
-		expect(sessions.ipAddress).toBeDefined();
-		expect(sessions.userAgent).toBeDefined();
-		expect(sessions.userId).toBeDefined();
+		expect(session).toBeDefined();
+		expect(session.id).toBeDefined();
+		expect(session.expiresAt).toBeDefined();
+		expect(session.token).toBeDefined();
+		expect(session.createdAt).toBeDefined();
+		expect(session.updatedAt).toBeDefined();
+		expect(session.ipAddress).toBeDefined();
+		expect(session.userAgent).toBeDefined();
+		expect(session.userId).toBeDefined();
 	});
 
 	it("should have accounts table defined", () => {
-		expect(accounts).toBeDefined();
-		expect(accounts.id).toBeDefined();
-		expect(accounts.accountId).toBeDefined();
-		expect(accounts.providerId).toBeDefined();
-		expect(accounts.userId).toBeDefined();
-		expect(accounts.accessToken).toBeDefined();
-		expect(accounts.refreshToken).toBeDefined();
-		expect(accounts.idToken).toBeDefined();
-		expect(accounts.accessTokenExpiresAt).toBeDefined();
-		expect(accounts.refreshTokenExpiresAt).toBeDefined();
-		expect(accounts.scope).toBeDefined();
-		expect(accounts.password).toBeDefined();
-		expect(accounts.createdAt).toBeDefined();
-		expect(accounts.updatedAt).toBeDefined();
+		expect(account).toBeDefined();
+		expect(account.id).toBeDefined();
+		expect(account.accountId).toBeDefined();
+		expect(account.providerId).toBeDefined();
+		expect(account.userId).toBeDefined();
+		expect(account.accessToken).toBeDefined();
+		expect(account.refreshToken).toBeDefined();
+		expect(account.idToken).toBeDefined();
+		expect(account.accessTokenExpiresAt).toBeDefined();
+		expect(account.refreshTokenExpiresAt).toBeDefined();
+		expect(account.scope).toBeDefined();
+		expect(account.password).toBeDefined();
+		expect(account.createdAt).toBeDefined();
+		expect(account.updatedAt).toBeDefined();
 	});
 
 	it("should have verifications table defined", () => {
-		expect(verifications).toBeDefined();
-		expect(verifications.id).toBeDefined();
-		expect(verifications.identifier).toBeDefined();
-		expect(verifications.value).toBeDefined();
-		expect(verifications.expiresAt).toBeDefined();
-		expect(verifications.createdAt).toBeDefined();
-		expect(verifications.updatedAt).toBeDefined();
+		expect(verification).toBeDefined();
+		expect(verification.id).toBeDefined();
+		expect(verification.identifier).toBeDefined();
+		expect(verification.value).toBeDefined();
+		expect(verification.expiresAt).toBeDefined();
+		expect(verification.createdAt).toBeDefined();
+		expect(verification.updatedAt).toBeDefined();
 	});
 });

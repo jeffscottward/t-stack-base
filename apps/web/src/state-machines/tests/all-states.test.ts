@@ -90,10 +90,12 @@ describe("All State Machines Coverage Report", () => {
 				states,
 				totalStates: states.length,
 				totalPaths: Object.keys(paths).length,
-				pathDetails: Object.entries(paths).map(([state, path]) => ({
-					targetState: state,
-					steps: path.paths.length,
-				})),
+				pathDetails: Object.entries(paths).map(
+					([state, path]: [string, any]) => ({
+						targetState: state,
+						steps: (path as any).paths ? (path as any).paths.length : 0,
+					}),
+				),
 			};
 		});
 

@@ -1,4 +1,4 @@
-import { assign, createMachine } from "xstate";
+import { assign, setup } from "xstate";
 
 export interface ThemeContext {
 	theme: "light" | "dark" | "system";
@@ -13,7 +13,12 @@ export type ThemeEvent =
 	| { type: "SET_DARK" }
 	| { type: "SET_SYSTEM" };
 
-export const themeMachine = createMachine<ThemeContext, ThemeEvent>({
+export const themeMachine = setup({
+	types: {
+		context: {} as ThemeContext,
+		events: {} as ThemeEvent,
+	},
+}).createMachine({
 	id: "theme",
 	initial: "closed",
 	context: {
@@ -34,22 +39,22 @@ export const themeMachine = createMachine<ThemeContext, ThemeEvent>({
 				SET_LIGHT: {
 					target: "closed",
 					actions: assign({
-						theme: "light",
-						isOpen: false,
+						theme: () => "light",
+						isOpen: () => false,
 					}),
 				},
 				SET_DARK: {
 					target: "closed",
 					actions: assign({
-						theme: "dark",
-						isOpen: false,
+						theme: () => "dark",
+						isOpen: () => false,
 					}),
 				},
 				SET_SYSTEM: {
 					target: "closed",
 					actions: assign({
-						theme: "system",
-						isOpen: false,
+						theme: () => "system",
+						isOpen: () => false,
 					}),
 				},
 			},
