@@ -70,6 +70,12 @@ pnpm browser-tools # Start browser tools server (run alongside dev)
 
 ## Documentation
 
+Always use pnpm instead of npm.
+Use TaskMaster MCP always to stay organized.
+Use NeonDB MCP to connect to a database.
+Use Context7 to get external docs.
+Use Playwright MCP to debug browser issues and test UI interactions.
+
 - @docs/ai-patterns.md - Detailed patterns to apply automatically
 - @docs/git-workflow.md - Git flow and commit conventions
 - @docs/testing.md - Testing guidelines
